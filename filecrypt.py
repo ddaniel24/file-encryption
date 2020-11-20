@@ -21,12 +21,12 @@ def main():
 
     # Check correct value of arguments
     if args.encrypt and args.decrypt:
-        print("ERROR: Cannot have both -e and -d arguments.")
+        print("Cannot have both -e and -d arguments.")
         parser.print_help()
         sys.exit()
 
     if not args.encrypt and not args.decrypt:
-        print("ERROR: Must specify one of the arguments -e or -d.")
+        print("Must specify one of the arguments -e or -d.")
         parser.print_help()
         sys.exit()
 
@@ -71,7 +71,7 @@ def main():
 
         # Remove the ".enc" file extension, in order to get the decrypted file name
         if not decrypted_file.update_file_name():
-            print("File {0} is not a valid '.enc' encrypted file.")
+            print("File '{0}' is not a valid '.enc' encrypted file.".format(decrypted_file.file_path))
             sys.exit()
 
         display_file_overwrite_prompt(decrypted_file, overwrite)
