@@ -89,8 +89,12 @@ def main():
             print("Done. Decrypted file saved in '{0}'".format(decrypted_file.file_path))
 
 
-# Method to ask user for file overwrite confirmation, in case -o argument is not used
 def display_file_overwrite_prompt(file: File, overwrite: bool):
+    """
+    Method to ask the user for file overwrite confirmation, in case -o argument is not used
+    :param file: file to check if it already exists or not
+    :param overwrite: True if -o argument has been passed, False otherwise
+    """
     if file.exists() and not overwrite:
         answer = ""
         # Make sure we only get y or n as an answer

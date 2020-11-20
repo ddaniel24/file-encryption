@@ -8,6 +8,13 @@ from file import File
 
 class Cryptography:
     def __init__(self, source: File, destination: File):
+        """
+        Constructor for Cryptography object
+        :param source: source file (as File object). For encryption, this is the plain text (unencrypted) file.
+        For decryption, this is the encrypted file.
+        :param destination: destination file (as File object). For encryption, this is the file which will hold the
+        encrypted content. For decryption, this is the plain text (unencrypted) file.
+        """
         self.source = source
         self.destination = destination
         # A salt value is a random data added as an addition to the input of a one-way function.
@@ -19,6 +26,11 @@ class Cryptography:
         self.key = b''
 
     def set_passphrase(self, passphrase: str):
+        """
+        Encode the passphrase as bytes and generate the encryption / decryption key. The passphrase is combined with
+        the salt value.
+        :param passphrase: human-readable passphrase
+        """
         # Encode the passphrase to bytes
         passphrase = passphrase.encode()
         kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=self.salt,
@@ -28,32 +40,34 @@ class Cryptography:
         self.key = base64.urlsafe_b64encode(kdf.derive(passphrase))
 
     def encrypt(self):
-        # Get file contents (the one which we want to encrypt)
+        """
+        Encrypt source file using key. Output to destination file (*.enc).
+        """
+
         file_stream = self.source.read_file()
 
-        # Encrypt file using key
         fernet = Fernet(self.key)
         encrypted_file_stream = fernet.encrypt(file_stream)
 
-        # Write encrypted bytes to output file
         self.destination.write_file(encrypted_file_stream)
 
     def decrypt(self):
-        # Get file contents (the one which we want to decrypt)
+        """
+        Decrypt source file (*.enc) using key. Output to destination file.
+        :rtype: True if decryption was successful using key. False otherwise.
+        """
+
         file_stream = self.source.read_file()
 
-        # Decrypt using key
         fernet = Fernet(self.key)
 
         try:
             decrypted_file_stream = fernet.decrypt(file_stream)
 
-            # Write decrypted stream to file
             self.destination.write_file(decrypted_file_stream)
 
             return True
 
-        except InvalidToken as e:
+        except InvalidToken:
             # Decryption key invalid
             return False
-
