@@ -1,6 +1,9 @@
 # File encryption in Python using symmetric keys
-
 The current project implements file encryption / decryption based on symmetric keys in Python. Symmetric key algorithms are cryptographic algorithms which use the same chryptographic key for encrypting plain text and decrypting cypher text. 
+
+## Prerequisites
+Code is written in Python 3.7.
+Install all packages from _requirements.txt_ by using **pip install [package_name]**
 
 ## Usage
 filecrypt.py [-e] [-d] [-o] filepath
