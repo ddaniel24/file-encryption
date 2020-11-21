@@ -1,8 +1,8 @@
 import sys
 import argparse
 import getpass
-from file import File, EncryptedFile, DecryptedFile
-from encryption import Cryptography
+from modules.file import File, EncryptedFile, DecryptedFile
+from modules.encryption import Cryptography
 
 
 def main():
