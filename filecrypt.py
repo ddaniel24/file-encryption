@@ -7,7 +7,7 @@ from modules.encryption import Cryptography
 
 def main():
     desc = "Encrypt or decrypt a specific file using a passphrase."
-    usage = "%(prog)s [-e] [-d] [-o] filepath"
+    usage = "%(prog)s [-e] [-d] [-o] file"
     epilog = "Check Github page for usage examples"
     parser = argparse.ArgumentParser(description=desc, usage=usage, epilog=epilog)
 
@@ -16,7 +16,9 @@ def main():
     parser.add_argument("-d", "--decrypt", action='store_true', default=False, help="decrypt file")
     parser.add_argument("-o", "--overwrite", action='store_true', default=False,
                         help="overwrite the new file, if it already exists")
-    parser.add_argument("file", type=str, help='file to encrypt/decrypt')
+    parser.add_argument("file", type=str,
+                        help='file to encrypt/decrypt (can either be file name only, if file is located in the same '
+                             'folder as the script, or full path to file)')
 
     args = parser.parse_args()
 
