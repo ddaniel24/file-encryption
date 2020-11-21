@@ -8,7 +8,8 @@ from modules.encryption import Cryptography
 def main():
     desc = "Encrypt or decrypt a specific file using a passphrase."
     usage = "%(prog)s [-e] [-d] [-o] filepath"
-    parser = argparse.ArgumentParser(description=desc, usage=usage)
+    epilog = "Check Github page for usage examples"
+    parser = argparse.ArgumentParser(description=desc, usage=usage, epilog=epilog)
 
     # Add the command line arguments
     parser.add_argument("-e", "--encrypt", action='store_true', default=False, help="encrypt file")
