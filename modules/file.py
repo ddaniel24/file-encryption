@@ -59,7 +59,7 @@ class DecryptedFile(File):
     def update_file_name(self):
         """
         Check if the file ends with ".enc" extension. Otherwise, we consider it invalid by design.
-        If the file does end with ".enc", the decryted file will need to have this extension removed.
+        If the file does end with ".enc", the decrypted file will need to have this extension removed.
         :rtype: False is file extension fails. True otherwise.
         """
 

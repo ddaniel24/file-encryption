@@ -17,12 +17,16 @@ class Cryptography:
         """
         self.source = source
         self.destination = destination
-        # A salt value is a random data added as an addition to the input of a one-way function.
-        # Salt values may be personalised, so that multiple users / files do not share the same value.
-        # For decrypting a file, make sure to always use the same salt as the one used for encryption.
-        # Otherwise, the passphrases will not match and decryption will fail.
+
+        """
+        A salt value is random data added as an addition to the input of a one-way function.
+        Salt values may be personalised, so that multiple users / files do not share the same value.
+        For decrypting a file, make sure to always use the same salt as the one used for encryption. Otherwise, the
+        passphrases will not match and decryption will fail.
+        """
         self.salt = b'salt_value_for_key_generation'
-        # This stores the key used for encryption / decryption
+
+        # This variable stores the encoded key used for encryption / decryption
         self.key = b''
 
     def set_passphrase(self, passphrase: str):

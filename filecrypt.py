@@ -1,3 +1,26 @@
+"""
+filecrypt - encryption / decryption based on symmetric keys
+
+usage: filecrypt [parameters] filename
+
+Run filecrypt -h or filecrypt --help for parameters
+
+Encryption: an existing file is encrypted using an user-defined passphrase. Encryption creates a new file with ".enc"
+extension appended.
+Example:
+    original file (plain): text.txt
+    encrypted file to be created: test.txt.enc
+    command: filecrypt --encrypt test.txt
+
+Decryption: an existing file is decrypted using an user-defined passphrase. Only ".enc" files are accepted for
+decryption. Extension is removed, with no other extra checks.
+Example:
+    original file (encrypted): text.txt.enc
+    decrypted file to be created: text.txt
+    command: filecrypt --decrypt test.txt.enc
+
+"""
+
 import sys
 import argparse
 import getpass
